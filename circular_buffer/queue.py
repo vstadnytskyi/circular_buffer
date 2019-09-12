@@ -40,6 +40,7 @@ class Queue(object):
         """
         the queue has front pointer and the length.
         """
+        from numpy import zeros
         self.rear = 0 #the end of the quequ, where new date will be enquequ.
         self.length = 0 #length defined as size of the second axis
         if 'float' in dtype:

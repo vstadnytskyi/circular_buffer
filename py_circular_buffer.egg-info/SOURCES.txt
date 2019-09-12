@@ -12,9 +12,12 @@ circular_buffer/_version.py
 circular_buffer/circular_buffer.py
 circular_buffer/circular_buffer_client.py
 circular_buffer/queue.py
+circular_buffer/refraction.py
 circular_buffer/tests/__init__.py
 circular_buffer/tests/conftest.py
-circular_buffer/tests/test_examples.py
+circular_buffer/tests/oldd_test_examples.py
+circular_buffer/tests/test_circular_buffer.py
+circular_buffer/tests/test_queue.py
 docs/Makefile
 docs/make.bat
 docs/source/conf.py
@@ -27,4 +30,5 @@ py_circular_buffer.egg-info/PKG-INFO
 py_circular_buffer.egg-info/SOURCES.txt
 py_circular_buffer.egg-info/dependency_links.txt
 py_circular_buffer.egg-info/entry_points.txt
+py_circular_buffer.egg-info/requires.txt
 py_circular_buffer.egg-info/top_level.txt
