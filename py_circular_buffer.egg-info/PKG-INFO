@@ -1,6 +1,6 @@
 Metadata-Version: 1.2
 Name: py-circular-buffer
-Version: 0.post11.dev0+g5406e31
+Version: 0.post12+g06657fa
 Summary: Python implementation of f numpy array based Circular buffer for efficient live data storage.
 Home-page: https://github.com/vstadnytskyi/circular_buffer
 Author: Valentyn Stadnytksyi
