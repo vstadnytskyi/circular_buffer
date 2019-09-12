@@ -31,14 +31,15 @@
 
 buffer has shape (x,y) or (col,row).
 buffer with width x or col
-        <------  x (col) ------->
-        *************************/|\
-        *                       * |
-        *                       * | y (row)
-        *                       * |
-        *************************\|/
+        <------  x (col) ------->               #
+        *************************/|\            #
+        *                       * |             #
+        *                       * | y (row)     #
+        *                       * |             #
+        *************************\|/            #
 where shape return (x,y)
 """
+
 __version__  = '1.1.8'
 
 from logging import debug, info,warn,error
@@ -214,7 +215,7 @@ if __name__ == "__main__": # for testing purposes
     from time import time
     import logging
     from tempfile import gettempdir
-    logging.basicConfig(#filename=gettempdir()+'/circular_buffer_LL.log',
+    logging.basicConfig(filename=gettempdir()+'/circular_buffer_LL.log',
                         level=logging.DEBUG, format="%(asctime)s %(levelname)s: %(message)s")
 
     server = Server()
