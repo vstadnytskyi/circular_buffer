@@ -20,6 +20,16 @@ from numpy import zeros
 class QueueTest(unittest.TestCase):
 
     def test_queue_end(self):
+        """
+        test if the default pointer in the buffer is -1.
+        """
+        buffer = CircularBuffer(shape = (100,2))
+        self.assertEqual(buffer.pointer, -1)
+
+    def test_queue_end_two(self):
+        """
+        test if the default pointer in the buffer is -1.
+        """
         buffer = CircularBuffer(shape = (100,2))
         self.assertEqual(buffer.pointer, -1)
 
