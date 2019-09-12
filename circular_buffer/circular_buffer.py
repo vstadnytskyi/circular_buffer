@@ -29,15 +29,6 @@
 
     1.1.5 - fixed python 3 competability
 
-buffer has shape (x,y) or (col,row).
-buffer with width x or col
-        <------  x (col) ------->               #
-        *************************/|\            #
-        *                       * |             #
-        *                       * | y (row)     #
-        *                       * |             #
-        *************************\|/            #
-where shape return (x,y)
 """
 
 __version__  = '1.1.8'
