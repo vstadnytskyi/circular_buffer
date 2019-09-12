@@ -143,10 +143,20 @@ class CircularBufferClient(object):
 
     def clear(self):
         """
-        clears the buffer
+        clears the buffer.
         if type is float will make it all nan
         if type is not float will make it just 0
-        resets both pointers to -1
+        resets both pointers to -1.
+
+        Parameters
+        ----------
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> circual_buffer.clear()
+
         """
         if 'float' in self.var_type:
             self.buffer = self.buffer * nan

@@ -4,37 +4,33 @@
     by Valentyn Stadnytskyi
     created: Nov 4, 2017
     last update: February, 2019
-
-    Queue is an abstract data structure, somewhat similar to Stacks. Unlike stacks, a queue is open at both its ends.
-    One end is always used to insert data (enqueue) and the other is used to remove data (dequeue)..
-
-
+Queue is an abstract data structure, somewhat similar to Stacks. \n
+Unlike stacks, a queue is open at both its ends. \n
+One end is always used to insert data (enqueue) \n
+and the other is used to remove data (dequeue).. \n
 Basic Operations
-Queue operations may involve initializing or defining the queue, utilizing it, and then completely erasing it from the memory. Here we shall try to understand the basic operations associated with queues −
-
+Queue operations may involve initializing or defining the queue,
+utilizing it, and then completely erasing it from the memory.
+Here we shall try to understand the basic operations associated with queues −
 enqueue() − add (store) an item to the queue.
-
 dequeue() − remove (access) an item from the queue.
-
-Few more functions are required to make the above-mentioned queue operation efficient. These are −
-
+Few more functions are required to make the
+above-mentioned queue operation efficient. These are −
 peek() − Gets the element at the front of the queue without removing it.
-
 isfull() − Checks if the queue is full.
-
 isempty() − Checks if the queue is empty.
 """
+
 __version__  = '1.0.0'
 
 from logging import debug, info, warn, error
-from numpy import nan, zeros, ones, asarray, transpose, concatenate
+from numpy import nan, asarray, concatenate
 from pdb import pm
 import traceback
 
 class Queue(object):
     """
     queue data structure implemented using numpy arrays.
-
     takes:
         shape = (20,2)
         dtype = 'float64'

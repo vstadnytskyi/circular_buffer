@@ -36,7 +36,7 @@ __version__  = '1.1.8'
 from logging import debug, info,warn,error
 from numpy import nan, zeros, ones, asarray, transpose, concatenate
 import warnings
-from pdb import pm
+
 import traceback
 
 ################################################################################################################
@@ -94,17 +94,31 @@ class CircularBuffer(object):
         except Exception:
             error(traceback.format_exc())
 
-    def clear(self):
+    def reset(self, clear = False):
         """
-        resets the pointers to -1. The data stays in the buffer and will be overwritten with next append events.
-        if type is float will makes it all nan else makes it just 0
+        resets pointers to -1 (empty buffer), the full reset can be force via parameter clears
+        The parameter clear can be used to
+
+        Parameters
+        ----------
+        clear:  (boolean)
+            force clearing the buffer
+
+        Returns
+        -------
+
+        Examples
+        --------
+        >>> circual_buffer.CircularBuffer.reset()
         """
-        if 'float' in self.type:
-            self.buffer = self.buffer * nan
-        else:
-            self.buffer = self.buffer*0
+        if clear:
+            if 'float' in self.type:
+                self.buffer = self.buffer * nan
+            else:
+                self.buffer = self.buffer*0
         self.pointer = -1
         self.g_pointer = -1
+        debug('{},{}'.format(self.pointer,self.g_pointer))
 
     def reshape(self, shape, dtype = None):
         from numpy import zeros
@@ -114,46 +128,21 @@ class CircularBuffer(object):
         else:
             self.buffer = zeros(shape, dtype=self.dtype)
 
-    @property
-    def g_packet_pointer(self):
-        """
-        returns global packet pointer calculated from global pointer and packet size.
-        The packet pointer can be a float number. It serves as an indaction something was not appended in packets.
-        """
-        return ((self.g_pointer+1)/self.packet_length)-1
-
-    @property
-    def packet_pointer(self):
-        """
-        returns packet pointer calculated from local pointer and packet size.
-        The packet pointer can be a float number. It serves as an indaction something was not appended in packets.
-        """
-        return ((self.pointer+1)/self.packet_length)-1
-    @property
-    def size(self):
-        """
-        returns the size of the circular buffer
-        """
-        return self.buffer.size
-    @property
-    def shape(self):
-        """
-        returns the shape of the circular buffer
-        """
-        return self.buffer.shape
-
-    @property
-    def dtype(self):
-        """
-        returns the dtype of the circular buffer
-        """
-        return self.buffer.dtype
-
-
     def get_all(self):
         """
-        return entire circular buffer server (self.buffer) in ordered way, where
+        return entire circular buffer server in ordered way, where
         last value is the last collected.
+
+        Parameters
+        ----------
+
+        Returns
+        -------
+        array (numpy array)
+
+        Examples
+        --------
+        >>> data = circual_buffer.CircularBuffer.get_all()
         """
         return self.get_last_N(N = self.shape[0])
 
@@ -202,7 +191,47 @@ class CircularBuffer(object):
             result = concatenate((self.buffer[-(N-P-1):], self.buffer[:P+1]),axis = 1)
         return result
 
+    @property
+    def g_packet_pointer(self):
+        """
+        returns global packet pointer calculated from global pointer and packet size.
+        The packet pointer can be a float number. It serves as an indaction something was not appended in packets.
+        """
+        return ((self.g_pointer+1)/self.packet_length)-1
+
+    @property
+    def packet_pointer(self):
+        """
+        returns packet pointer calculated from local pointer and packet size.
+        The packet pointer can be a float number. It serves as an indaction something was not appended in packets.
+        """
+        return ((self.pointer+1)/self.packet_length)-1
+
+    @property
+    def size(self):
+        """
+        returns the size of the circular buffer
+        """
+        return self.buffer.size
+
+    @property
+    def shape(self):
+        """
+        returns the shape of the circular buffer
+        """
+        return self.buffer.shape
+
+    @property
+    def dtype(self):
+        """
+        returns the dtype of the circular buffer
+        """
+        return self.buffer.dtype
+
+
+
 if __name__ == "__main__": # for testing purposes
+    from pdb import pm #for debugging
     from time import time
     import logging
     from tempfile import gettempdir
