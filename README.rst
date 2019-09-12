@@ -17,4 +17,7 @@ Python implementation of f numpy array based Circular buffer for efficient live 
 Features
 --------
 
-* TODO
+TODO
+----
+- change numpy array definition from predefined shape to length and data entry shape. This will allow circular buffer to be used for any dimmensions of the numpy array. The pointers will follow the fast axis. 
+
