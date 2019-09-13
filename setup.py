@@ -38,7 +38,7 @@ setup(
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     description="Python implementation of f numpy array based Circular buffer for efficient live data storage.",
-    long_description=readme,
+    long_description='',#readme,
     author="Valentyn Stadnytksyi",
     author_email='v.stadnytskyi@gmail.com',
     url='https://github.com/vstadnytskyi/circular_buffer',
