@@ -14,7 +14,7 @@
 import unittest
 
 from ..circular_buffer import CircularBuffer
-from numpy import zeros
+
 
 
 class QueueTest(unittest.TestCase):
@@ -23,19 +23,19 @@ class QueueTest(unittest.TestCase):
         """
         test if the default pointer in the buffer is -1.
         """
-        buffer = CircularBuffer(shape = (100,2))
+        buffer = CircularBuffer(shape=(100, 2))
         self.assertEqual(buffer.pointer, -1)
 
     def test_queue_end_two(self):
         """
         test if the default pointer in the buffer is -1.
         """
-        buffer = CircularBuffer(shape = (100,2))
+        buffer = CircularBuffer(shape=(100, 2))
         self.assertEqual(buffer.pointer, -1)
 
     def test_1(self):
         from numpy import std,random
-        buffer = CircularBuffer(shape = (100,2))
+        buffer = CircularBuffer(shape= 100, 2))
         data = random.randint(1024, size=(5, 2))
         buffer.packet_length = 5
         buffer.append(data)
@@ -46,9 +46,9 @@ class QueueTest(unittest.TestCase):
 
     def test_attributes(self):
         from numpy import std,random
-        buffer = CircularBuffer(shape = (100,2), dtype = 'int16')
+        buffer = CircularBuffer(shape=(100, 2), dtype='int16')
         data = random.randint(1024, size=(5, 2))
         buffer.append(data)
-        self.assertEqual(buffer.shape, (100,2))
+        self.assertEqual(buffer.shape, (100, 2))
         self.assertEqual(buffer.size, 100*2)
         self.assertEqual(buffer.dtype, 'int16')

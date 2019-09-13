@@ -53,13 +53,13 @@ class CircularBufferClient(object):
     give_all: returns entire circular buffer client
     give_N: FIXIT
     """
-    def __init__(self, size = (4,1000), var_type ='float64'): #Client buffer does not need type since it is always updated with the server buffer.
+    def __init__(self, size=(4, 1000), var_type='float64'): #Client buffer does not need type since it is always updated with the server buffer.
         self.size = size
         #if type(self.size) is not tuple:
             #raise ValueError('Client circular buffer: the circular buffer size should be tuple but', type(self.size), 'is found')
         self.var_type = var_type
         self.type = 'client'
-        self.buffer = zeros(self.size,dtype = var_type) * nan # tuple (smaller, large) dimensions
+        self.buffer = zeros(self.size,dtype=var_type) * nan # tuple (smaller, large) dimensions
         self.__info__ = "Client RingBuffer"
         self.pointerC = -1 #Client pointer
         self.pointerS = -1 #Server pointer
@@ -129,7 +129,7 @@ class CircularBufferClient(object):
         response = self.give_N(N = self.size[1])
         return self.buffer
 
-    def give_N(self,N):
+    def give_N(self, N):
         """
         returns last N entries before the known client pointer(self.pointerC)
         Valentyn: June 15 FIXIT I am not sure what this function is supposed to do

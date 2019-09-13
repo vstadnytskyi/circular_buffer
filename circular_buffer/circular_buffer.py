@@ -43,6 +43,13 @@ import traceback
 #### Client section of the Circular Buffer
 ################################################################################################################
 class CircularBuffer(object):
+    """
+    Description for class
+
+    :ivar pointer: initial value: -1
+    :ivar g_pointer: initial value: -1
+    :ivar packet_length: initial value 1
+    """
     def __init__(self, shape = (100,2) , dtype = 'float64', packet_length = 1):
         from numpy import nan, zeros
         """
@@ -66,7 +73,11 @@ class CircularBuffer(object):
         self.type = 'server'
         self.packet_length = packet_length
         self.pointer = -1
+        """ running current pointer value """
         self.g_pointer = -1
+        """ running current global_pointer value """
+        self.lenngth = shape[0]
+        self.datapoint_shape = shape[1:]
         if 'float' in dtype:
             self.buffer = zeros(shape, dtype=dtype) * nan
         else:
@@ -77,7 +88,7 @@ class CircularBuffer(object):
         appends data to the existing circular buffer.
         """
         from numpy import zeros
-        if 'tuple' in str(type(data)) or 'lst' in str(type(data)):
+        if 'tuple' in str(type(data)):
             arr = zeros((len(data),1))
             for idx in range(len(data)):
                 arr[idx,0] = data[idx]
@@ -210,24 +221,37 @@ class CircularBuffer(object):
     @property
     def size(self):
         """
-        returns the size of the circular buffer
+        integer: property objects that returns the size of the circular buffer.
         """
         return self.buffer.size
 
     @property
     def shape(self):
         """
-        returns the shape of the circular buffer
+        tuple: property objects that returns the shape of the circular buffer.
         """
         return self.buffer.shape
+
+    def get_length(self):
+        """
+        integer: returns the length of the circular buffer along fast
+        """
+        return self.buffer.shape[0]
+    length = property(get_length)
+
+    @property
+    def data_shape(self):
+        """
+        tuple: property objects that returns the shape of one data point(or N dimensional array) of the circular buffer
+        """
+        return  self.buffer.shape[1:]
 
     @property
     def dtype(self):
         """
-        returns the dtype of the circular buffer
+        dtype: property objects that returns the shape of one data point(or N dimensional array) of the circular buffer
         """
         return self.buffer.dtype
-
 
 
 if __name__ == "__main__": # for testing purposes
